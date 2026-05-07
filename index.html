@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大客交付一部二组 · 4月工时分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1F3864,#2E75B6);color:white;padding:28px 40px;text-align:center}
+.header h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.header p{font-size:12px;opacity:0.85}
+.container{max-width:1200px;margin:0 auto;padding:24px 20px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.kpi-card{background:white;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center}
+.kpi-label{font-size:12px;color:#888;margin-bottom:4px}
+.kpi-value{font-size:26px;font-weight:700;color:#1F3864}
+.kpi-unit{font-size:11px;color:#aaa;margin-top:2px}
+.section{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:20px;overflow:hidden}
+.section-header{background:linear-gradient(90deg,#1F3864,#2E75B6);color:white;padding:11px 22px;font-size:14px;font-weight:600}
+.section-body{padding:18px 22px}
+.dual-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.dual-col{grid-template-columns:1fr}}
+.chart-box{position:relative;height:300px}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table thead th{background:#2E75B6;color:white;padding:9px 12px;text-align:left;font-weight:600;white-space:nowrap}
+.data-table tbody td{padding:8px 12px;border-bottom:1px solid #f0f0f0}
+.data-table tbody tr:nth-child(even){background:#fafbfc}
+.data-table tbody tr:hover{background:#eef4ff}
+.tag-top1{background:#fff0f0;color:#C00000;padding:2px 8px;border-radius:4px;font-size:11px}
+.tag-warn{background:#fff5eb;color:#ED7D31;padding:2px 8px;border-radius:4px;font-size:11px}
+.tag-ok{background:#eef9ee;color:#375623;padding:2px 8px;border-radius:4px;font-size:11px}
+.action-card{border:1px solid #e8e8e8;border-radius:8px;padding:12px 16px;margin-bottom:10px;background:#fafbfc}
+.action-card h4{font-size:13px;color:#1F3864;margin-bottom:5px}
+.action-card .prob{font-size:12px;color:#666;margin-bottom:4px}
+.action-card .fix{font-size:12px;color:#2E75B6;margin-top:5px;padding:7px 12px;background:#eef4ff;border-radius:6px}
+.subsection-title{font-size:13px;color:#1F3864;font-weight:600;margin:16px 0 10px}
+.footer{text-align:center;padding:18px;font-size:12px;color:#aaa}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 大客交付一部二组 · 4月工时分析报告</h1>
+  <p>报告生成时间：2026年5月7日 · 数据来源：项目工时登记对象导出结果 · 数据周期：2026年4月</p>
+</div>
+
+<div class="container">
+
+<div class="kpi-row">
+  <div class="kpi-card"><div class="kpi-label">总工时</div><div class="kpi-value">704</div><div class="kpi-unit">小时</div></div>
+  <div class="kpi-card"><div class="kpi-label">工单数</div><div class="kpi-value">411</div><div class="kpi-unit">条</div></div>
+  <div class="kpi-card"><div class="kpi-label">参与人员</div><div class="kpi-value">5</div><div class="kpi-unit">人</div></div>
+  <div class="kpi-card"><div class="kpi-label">覆盖项目</div><div class="kpi-value">29</div><div class="kpi-unit">个</div></div>
+  <div class="kpi-card"><div class="kpi-label">人均工时</div><div class="kpi-value">141</div><div class="kpi-unit">h/人</div></div>
+  <div class="kpi-card"><div class="kpi-label">工作天数</div><div class="kpi-value">24</div><div class="kpi-unit">天</div></div>
+</div>
+
+<div class="section">
+  <div class="section-header">📊 一、工作类型总览</div>
+  <div class="section-body dual-col">
+    <div class="chart-box"><canvas id="chartWType"></canvas></div>
+    <div>
+      <table class="data-table">
+        <thead><tr><th>工作类型</th><th>工时</th><th>占比</th></tr></thead>
+        <tbody><tr style='background:#fafbfc'><td>维护</td><td>235.0h</td><td>33.4%</td></tr>
+<tr style='background:#fff'><td>项目管理</td><td>161.0h</td><td>22.9%</td></tr>
+<tr style='background:#fafbfc'><td>项目实施</td><td>94.0h</td><td>13.4%</td></tr>
+<tr style='background:#fff'><td>学习/内部例会</td><td>89.0h</td><td>12.6%</td></tr>
+<tr style='background:#fafbfc'><td>数字化升级</td><td>79.0h</td><td>11.2%</td></tr>
+<tr style='background:#fff'><td>售前</td><td>46.0h</td><td>6.5%</td></tr>
+</tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">📋 二、项目工时排名（全部29个项目）</div>
+  <div class="section-body">
+    <table class="data-table">
+      <thead><tr><th>排名</th><th>项目名称</th><th>工时</th><th>工单</th><th>人数</th><th>人均</th><th>状态</th></tr></thead>
+      <tbody><tr><td>第1名</td><td>（未命名）</td><td>134.5h</td><td>64</td><td>5</td><td>26.9h</td><td><span class='tag-top1'>🔥 TOP1</span></td></tr>
+<tr><td>第2名</td><td>小龙坎mini火锅冒菜（小龙坎二品牌）</td><td>124.5h</td><td>53</td><td>1</td><td>124.5h</td><td><span class='tag-warn'>高耗时</span></td></tr>
+<tr><td>第3名</td><td>江宴渔村-老城砖</td><td>70.5h</td><td>49</td><td>2</td><td>35.2h</td><td><span class='tag-ok'>正常</span></td></tr>
+<tr><td>第4名</td><td>南京昌海</td><td>41.0h</td><td>17</td><td>4</td><td>10.2h</td><td><span class='tag-ok'>正常</span></td></tr>
+<tr><td>第5名</td><td>荷花垄</td><td>36.5h</td><td>15</td><td>1</td><td>36.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第6名</td><td>黑土风情铁锅炖、东北大鱼坊</td><td>36.0h</td><td>21</td><td>1</td><td>36.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第7名</td><td>喜家德、喜鼎（刘庆明）</td><td>34.5h</td><td>25</td><td>2</td><td>17.2h</td><td><span class='tag-ok'>正常</span></td></tr>
+<tr><td>第8名</td><td>煲仔皇</td><td>34.5h</td><td>27</td><td>1</td><td>34.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第9名</td><td>石家庄医科大学第一医院</td><td>28.5h</td><td>21</td><td>1</td><td>28.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第10名</td><td>三强鸽子</td><td>27.5h</td><td>20</td><td>2</td><td>13.8h</td><td><span class='tag-ok'>正常</span></td></tr>
+<tr><td>第11名</td><td>体渝场火锅馆，川渝部落，养生巴食骨煲</td><td>16.5h</td><td>12</td><td>1</td><td>16.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第12名</td><td>山东关合</td><td>15.5h</td><td>7</td><td>1</td><td>15.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第13名</td><td>钱小奴</td><td>15.0h</td><td>12</td><td>1</td><td>15.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第14名</td><td>邢台外婆港</td><td>14.5h</td><td>7</td><td>1</td><td>14.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第15名</td><td>中兴食堂</td><td>10.0h</td><td>5</td><td>1</td><td>10.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第16名</td><td>食分趣</td><td>8.5h</td><td>8</td><td>1</td><td>8.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第17名</td><td>土家湘菜</td><td>8.5h</td><td>5</td><td>1</td><td>8.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第18名</td><td>百饺园</td><td>7.0h</td><td>6</td><td>1</td><td>7.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第19名</td><td>云天楼</td><td>6.5h</td><td>6</td><td>2</td><td>3.2h</td><td><span class='tag-ok'>正常</span></td></tr>
+<tr><td>第20名</td><td>东方剑桥食堂数字化项目</td><td>6.5h</td><td>4</td><td>1</td><td>6.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第21名</td><td>卷翻天</td><td>5.0h</td><td>4</td><td>1</td><td>5.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第22名</td><td>丽花堂</td><td>5.0h</td><td>5</td><td>1</td><td>5.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第23名</td><td>颍禾炒鸡</td><td>3.5h</td><td>3</td><td>1</td><td>3.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第24名</td><td>中国外交部</td><td>3.0h</td><td>3</td><td>1</td><td>3.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第25名</td><td>从都国际庄园</td><td>3.0h</td><td>3</td><td>1</td><td>3.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第26名</td><td>东欢喜虾仁水饺</td><td>2.5h</td><td>3</td><td>1</td><td>2.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第27名</td><td>圣旺茶饮</td><td>2.0h</td><td>2</td><td>1</td><td>2.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第28名</td><td>侨鑫</td><td>2.0h</td><td>2</td><td>1</td><td>2.0h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+<tr><td>第29名</td><td>西安饮食（中餐）项目</td><td>1.5h</td><td>2</td><td>1</td><td>1.5h</td><td><span class='tag-warn'>单独承担</span></td></tr>
+</tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">👥 三、人员工时维度</div>
+  <div class="section-body">
+    <div class="subsection-title">📋 人员工时排名</div>
+    <table class="data-table" style="margin-bottom:20px;">
+      <thead><tr><th>排名</th><th>姓名</th><th>总工时</th><th>工单</th><th>项目</th><th>日均</th></tr></thead>
+      <tbody><tr><td>第1名</td><td><b>文昊</b></td><td>155.0h</td><td>81</td><td>5</td><td>6.5h</td></tr>
+<tr><td>第2名</td><td><b>王飞</b></td><td>153.5h</td><td>60</td><td>8</td><td>6.4h</td></tr>
+<tr><td>第3名</td><td><b>于文强</b></td><td>140.5h</td><td>107</td><td>9</td><td>5.9h</td></tr>
+<tr><td>第4名</td><td><b>汪雅婷</b></td><td>133.0h</td><td>92</td><td>9</td><td>5.5h</td></tr>
+<tr><td>第5名</td><td><b>葛鑫</b></td><td>122.0h</td><td>71</td><td>9</td><td>5.1h</td></tr>
+</tbody>
+    </table>
+
+    <div class="subsection-title">📊 创建人 × 工作类型分布</div>
+    <div class="chart-box" style="height:260px;margin-bottom:20px;"><canvas id="chartCross"></canvas></div>
+
+    <div class="subsection-title">🔧 个人改善措施（5月重点）</div>
+    <div class="action-card">
+  <h4>文昊（第1名，155.0h，维护占比23.5%）</h4>
+  <div class="prob">📌 问题：维护占比高，多为重复维护工作</div>
+  <div class="fix">✅ 改善措施：整理维护SOP，推动客户自助问题库，每周1h整理常见问题</div>
+</div>
+<div class="action-card">
+  <h4>王飞（第2名，153.5h，维护占比31.6%）</h4>
+  <div class="prob">📌 问题：维护52%+项目管理24%，工作分散</div>
+  <div class="fix">✅ 改善措施：优化实施流程缩短周期，维护工作分时段集中处理</div>
+</div>
+<div class="action-card">
+  <h4>于文强（第3名，140.5h，维护占比52.3%）</h4>
+  <div class="prob">📌 问题：工作较均衡，数字化升级占比高</div>
+  <div class="fix">✅ 改善措施：保持数字化升级投入，维护标准化，沉淀可复用文档</div>
+</div>
+<div class="action-card">
+  <h4>汪雅婷（第4名，133.0h，维护占比46.2%）</h4>
+  <div class="prob">📌 问题：维护52%+售前15%，沟通答疑占比高</div>
+  <div class="fix">✅ 改善措施：整理售前FAQ话术库，推动客户问题自闭环</div>
+</div>
+<div class="action-card">
+  <h4>葛鑫（第5名，122.0h，维护占比12.3%）</h4>
+  <div class="prob">📌 问题：项目管理为主，数字化升级占比偏低</div>
+  <div class="fix">✅ 改善措施：提升数字化升级参与度，PM工作标准化</div>
+</div>
+
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">🔧 四、维护工时深度分析</div>
+  <div class="section-body">
+    <div class="chart-box" style="height:260px;margin-bottom:20px;"><canvas id="chartMtn"></canvas></div>
+    <table class="data-table">
+      <thead><tr><th>维护类型</th><th>工时</th><th>工单</th><th>均耗时</th><th>占比</th><th>风险</th></tr></thead>
+      <tbody><tr style='background:#fafbfc'><td>设置调整</td><td>91.5h</td><td>62</td><td>1.5h</td><td>38.9%</td><td>✅ 正常</td></tr>
+<tr style='background:#fff'><td>沟通答疑</td><td>86.5h</td><td>71</td><td>1.2h</td><td>36.8%</td><td>✅ 正常</td></tr>
+<tr style='background:#fafbfc'><td>bug研发解决</td><td>17.0h</td><td>13</td><td>1.3h</td><td>7.2%</td><td>✅ 正常</td></tr>
+<tr style='background:#fff'><td>未分类</td><td>14.0h</td><td>8</td><td>1.8h</td><td>6.0%</td><td>✅ 正常</td></tr>
+<tr style='background:#fafbfc'><td>bug版本升级</td><td>7.5h</td><td>6</td><td>1.2h</td><td>3.2%</td><td>✅ 正常</td></tr>
+<tr style='background:#fff'><td>对账</td><td>7.0h</td><td>4</td><td>1.8h</td><td>3.0%</td><td>✅ 正常</td></tr>
+<tr style='background:#fafbfc'><td>培训</td><td>6.0h</td><td>5</td><td>1.2h</td><td>2.6%</td><td>✅ 正常</td></tr>
+<tr style='background:#fff'><td>新开门店</td><td>4.5h</td><td>3</td><td>1.5h</td><td>1.9%</td><td>✅ 正常</td></tr>
+<tr style='background:#fafbfc'><td>硬件网络</td><td>1.0h</td><td>1</td><td>1.0h</td><td>0.4%</td><td>✅ 正常</td></tr>
+</tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">🚀 五、数字化升级专项</div>
+  <div class="section-body">
+    <p style="font-size:13px;color:#666;margin-bottom:14px;">
+      数字化升级总工时：<b style="color:#2E75B6">79.0h</b>（占总工时 11.2%），
+      工单数 39 条，涉及项目 12 个
+    </p>
+    <table class="data-table" style="margin-bottom:14px;"><thead><tr><th>项目</th><th>工时</th><th>工单</th><th>核心动作</th><th>预期结果</th></tr></thead><tbody><tr><td>三强鸽子</td><td>1.5h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>东欢喜虾仁水饺</td><td>1.0h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>体渝场火锅馆，川渝部落，养生巴食骨煲</td><td>1.0h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>侨鑫</td><td>1.5h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>南京昌海</td><td>22.5h</td><td>9</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>喜家德、喜鼎（刘庆明）</td><td>15.5h</td><td>8</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>土家湘菜</td><td>5.5h</td><td>3</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>小龙坎mini火锅冒菜（小龙坎二品牌）</td><td>5.0h</td><td>2</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>煲仔皇</td><td>7.5h</td><td>6</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>百饺园</td><td>2.0h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>钱小奴</td><td>2.0h</td><td>1</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+<tr><td>黑土风情铁锅炖、东北大鱼坊</td><td>14.0h</td><td>5</td><td>数字化升级推进</td><td style='color:#375623'>提升数字化能力</td></tr>
+</tbody></table>
+    <div style="background:#eef4ff;padding:12px 16px;border-radius:8px;font-size:12px;color:#333;">
+      <b style="color:#1F3864">改进建议：</b>① 梳理可升级客户清单；② 沉淀标准化升级方案；③ 5月目标数字化升级占比提升至15%
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">📈 六、每日工时趋势</div>
+  <div class="section-body">
+    <div class="chart-box"><canvas id="chartTrend"></canvas></div>
+  </div>
+</div>
+
+<div class="footer">大客交付一部二组 · 葛鑫 · 2026年5月</div>
+</div>
+
+<script>
+const wtypeLabels = ["维护", "项目管理", "项目实施", "学习/内部例会", "数字化升级", "售前"];
+const wtypeValues = [235.0, 161.0, 94.0, 89.0, 79.0, 46.0];
+const projData = [{"rank": 1, "name": "（未命名）", "hours": 134.5, "orders": 64, "staff": 5, "avg": 26.9, "tag": "TOP1", "tag_class": "top1"}, {"rank": 2, "name": "小龙坎mini火锅冒菜（小龙坎二品牌）", "hours": 124.5, "orders": 53, "staff": 1, "avg": 124.5, "tag": "高耗时", "tag_class": "warn"}, {"rank": 3, "name": "江宴渔村-老城砖", "hours": 70.5, "orders": 49, "staff": 2, "avg": 35.2, "tag": "正常", "tag_class": "ok"}, {"rank": 4, "name": "南京昌海", "hours": 41.0, "orders": 17, "staff": 4, "avg": 10.2, "tag": "正常", "tag_class": "ok"}, {"rank": 5, "name": "荷花垄", "hours": 36.5, "orders": 15, "staff": 1, "avg": 36.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 6, "name": "黑土风情铁锅炖、东北大鱼坊", "hours": 36.0, "orders": 21, "staff": 1, "avg": 36.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 7, "name": "喜家德、喜鼎（刘庆明）", "hours": 34.5, "orders": 25, "staff": 2, "avg": 17.2, "tag": "正常", "tag_class": "ok"}, {"rank": 8, "name": "煲仔皇", "hours": 34.5, "orders": 27, "staff": 1, "avg": 34.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 9, "name": "石家庄医科大学第一医院", "hours": 28.5, "orders": 21, "staff": 1, "avg": 28.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 10, "name": "三强鸽子", "hours": 27.5, "orders": 20, "staff": 2, "avg": 13.8, "tag": "正常", "tag_class": "ok"}, {"rank": 11, "name": "体渝场火锅馆，川渝部落，养生巴食骨煲", "hours": 16.5, "orders": 12, "staff": 1, "avg": 16.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 12, "name": "山东关合", "hours": 15.5, "orders": 7, "staff": 1, "avg": 15.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 13, "name": "钱小奴", "hours": 15.0, "orders": 12, "staff": 1, "avg": 15.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 14, "name": "邢台外婆港", "hours": 14.5, "orders": 7, "staff": 1, "avg": 14.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 15, "name": "中兴食堂", "hours": 10.0, "orders": 5, "staff": 1, "avg": 10.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 16, "name": "食分趣", "hours": 8.5, "orders": 8, "staff": 1, "avg": 8.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 17, "name": "土家湘菜", "hours": 8.5, "orders": 5, "staff": 1, "avg": 8.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 18, "name": "百饺园", "hours": 7.0, "orders": 6, "staff": 1, "avg": 7.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 19, "name": "云天楼", "hours": 6.5, "orders": 6, "staff": 2, "avg": 3.2, "tag": "正常", "tag_class": "ok"}, {"rank": 20, "name": "东方剑桥食堂数字化项目", "hours": 6.5, "orders": 4, "staff": 1, "avg": 6.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 21, "name": "卷翻天", "hours": 5.0, "orders": 4, "staff": 1, "avg": 5.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 22, "name": "丽花堂", "hours": 5.0, "orders": 5, "staff": 1, "avg": 5.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 23, "name": "颍禾炒鸡", "hours": 3.5, "orders": 3, "staff": 1, "avg": 3.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 24, "name": "中国外交部", "hours": 3.0, "orders": 3, "staff": 1, "avg": 3.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 25, "name": "从都国际庄园", "hours": 3.0, "orders": 3, "staff": 1, "avg": 3.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 26, "name": "东欢喜虾仁水饺", "hours": 2.5, "orders": 3, "staff": 1, "avg": 2.5, "tag": "单独承担", "tag_class": "warn"}, {"rank": 27, "name": "圣旺茶饮", "hours": 2.0, "orders": 2, "staff": 1, "avg": 2.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 28, "name": "侨鑫", "hours": 2.0, "orders": 2, "staff": 1, "avg": 2.0, "tag": "单独承担", "tag_class": "warn"}, {"rank": 29, "name": "西安饮食（中餐）项目", "hours": 1.5, "orders": 2, "staff": 1, "avg": 1.5, "tag": "单独承担", "tag_class": "warn"}];
+const personLabels = ["文昊", "王飞", "于文强", "汪雅婷", "葛鑫"];
+const crossTypes = ["维护", "项目管理", "项目实施", "学习/内部例会", "数字化升级", "售前"];
+const crossMatrix = [[36.5, 40.0, 62.5, 7.0, 9.0, 0.0], [48.5, 15.5, 31.5, 16.0, 10.0, 32.0], [73.5, 46.5, 0.0, 12.0, 8.5, 0.0], [61.5, 40.5, 0.0, 4.5, 26.5, 0.0], [15.0, 18.5, 0.0, 49.5, 25.0, 14.0]];
+const mtnLabels = ["设置调整", "沟通答疑", "bug研发解决", "未分类", "bug版本升级", "对账", "培训", "新开门店", "硬件网络"];
+const mtnValues = [91.5, 86.5, 17.0, 14.0, 7.5, 7.0, 6.0, 4.5, 1.0];
+const mtnCounts = [62, 71, 13, 8, 6, 4, 5, 3, 1];
+const dayValues = [115.5, 129.5, 154.0, 159.0, 128.5, 9.0, 8.5];
+const mtnTotal = 235.0;
+const digiProj = [{"项目名称": "三强鸽子", "总工时": 1.5, "工单数": 1}, {"项目名称": "东欢喜虾仁水饺", "总工时": 1.0, "工单数": 1}, {"项目名称": "体渝场火锅馆，川渝部落，养生巴食骨煲", "总工时": 1.0, "工单数": 1}, {"项目名称": "侨鑫", "总工时": 1.5, "工单数": 1}, {"项目名称": "南京昌海", "总工时": 22.5, "工单数": 9}, {"项目名称": "喜家德、喜鼎（刘庆明）", "总工时": 15.5, "工单数": 8}, {"项目名称": "土家湘菜", "总工时": 5.5, "工单数": 3}, {"项目名称": "小龙坎mini火锅冒菜（小龙坎二品牌）", "总工时": 5.0, "工单数": 2}, {"项目名称": "煲仔皇", "总工时": 7.5, "工单数": 6}, {"项目名称": "百饺园", "总工时": 2.0, "工单数": 1}, {"项目名称": "钱小奴", "总工时": 2.0, "工单数": 1}, {"项目名称": "黑土风情铁锅炖、东北大鱼坊", "总工时": 14.0, "工单数": 5}];
+
+// 工作类型饼图
+new Chart(document.getElementById('chartWType'), {
+  type:'doughnut',
+  data:{
+    labels: wtypeLabels,
+    datasets:[{
+      data: wtypeValues,
+      backgroundColor: ['#2E75B6','#ED7D31','#375623','#7030A0','#C00000','#FFC000'],
+      borderWidth:2, borderColor:'#fff'
+    }]
+  },
+  options:{ plugins:{ legend:{position:'bottom'} }, cutout:'55%' }
+});
+
+// 人员×工作类型堆叠柱状图
+const crossColors = ['#2E75B6','#ED7D31','#375623','#7030A0','#C00000','#FFC000'];
+new Chart(document.getElementById('chartCross'), {
+  type:'bar',
+  data:{
+    labels: personLabels,
+    datasets: crossTypes.map((t,i) => ({
+      label: t,
+      data: crossMatrix.map(r => r[i]),
+      backgroundColor: crossColors[i % crossColors.length],
+      stack:'stack1'
+    }))
+  },
+  options:{
+    scales:{x:{stacked:true},y:{stacked:true}},
+    plugins:{legend:{position:'bottom',font:{size:11}}}
+  }
+});
+
+// 维护类型横向柱状图
+new Chart(document.getElementById('chartMtn'), {
+  type:'bar',
+  data:{
+    labels: mtnLabels,
+    datasets:[{
+      data: mtnValues,
+      backgroundColor:['#ED7D31','#C00000','#FFC000','#7030A0','#2E75B6'],
+      borderRadius:4
+    }]
+  },
+  options:{indexAxis:'y',plugins:{legend:{display:false}}}
+});
+
+// 每日工时趋势
+new Chart(document.getElementById('chartTrend'), {
+  type:'line',
+  data:{
+    labels:['周一','周二','周三','周四','周五','周六','周日'],
+    datasets:[{
+      label:'工时(h)',
+      data: dayValues,
+      borderColor:'#2E75B6',
+      backgroundColor:'rgba(46,117,182,0.1)',
+      fill:true, tension:0.4, pointRadius:5, pointBackgroundColor:'#2E75B6'
+    }]
+  },
+  options:{scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>
